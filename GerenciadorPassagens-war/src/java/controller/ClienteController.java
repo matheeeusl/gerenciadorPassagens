@@ -40,7 +40,11 @@ public class ClienteController implements Serializable {
     }
     
     public String insert(){
-        this.clienteFacade.create(cliente);
+        try{
+            this.clienteFacade.create(cliente);
+        }catch(Exception e){
+            System.err.println(e);
+        }
         this.cliente = new Clientes();
         return "index";
     }
