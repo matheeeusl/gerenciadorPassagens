@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Matheus
+ * @author 09123471980
  */
 @Entity
 @Table(name = "CLIENTES")
@@ -32,7 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Clientes.findByCidade", query = "SELECT c FROM Clientes c WHERE c.cidade = :cidade"),
     @NamedQuery(name = "Clientes.findByUf", query = "SELECT c FROM Clientes c WHERE c.uf = :uf"),
     @NamedQuery(name = "Clientes.findByTelefone", query = "SELECT c FROM Clientes c WHERE c.telefone = :telefone"),
-    @NamedQuery(name = "Clientes.findByEmail", query = "SELECT c FROM Clientes c WHERE c.email = :email")})
+    @NamedQuery(name = "Clientes.findByEmail", query = "SELECT c FROM Clientes c WHERE c.email = :email"),
+    @NamedQuery(name = "Clientes.findByLogin", query = "SELECT c FROM Clientes c WHERE c.login = :login"),
+    @NamedQuery(name = "Clientes.findBySenha", query = "SELECT c FROM Clientes c WHERE c.senha = :senha"),
+    @NamedQuery(name = "Clientes.autenticar", query = "SELECT c FROM Clientes c WHERE c.senha = :senha AND c.login = :login")
+
+    })
 public class Clientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,6 +67,16 @@ public class Clientes implements Serializable {
     @Size(max = 30)
     @Column(name = "EMAIL")
     private String email;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "LOGIN")
+    private String login;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "SENHA")
+    private String senha;
 
     public Clientes() {
     }
@@ -70,9 +85,11 @@ public class Clientes implements Serializable {
         this.id = id;
     }
 
-    public Clientes(Integer id, String nome) {
+    public Clientes(Integer id, String nome, String login, String senha) {
         this.id = id;
         this.nome = nome;
+        this.login = login;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -129,6 +146,22 @@ public class Clientes implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     @Override

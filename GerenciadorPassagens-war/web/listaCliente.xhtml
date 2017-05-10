@@ -47,6 +47,18 @@
                          </f:facet>
                          <h:outputText value="#{cliente.telefone}"/>
                      </p:column>
+                    <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="LOGIN"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.login}"/>
+                     </p:column>
+                    <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="SENHA"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.senha}"/>
+                     </p:column>
 
                    <p:column headerText="DELETE">
                        <h:commandLink value="DEL" action="#{clienteController.delete(cliente)}" onclick="return confirm('Tem certeza?')" />
